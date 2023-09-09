@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Applications</title>
+</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        li a {
+            text-decoration: none;
+            padding: 5px 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .approve {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .reject {
+            background-color: #dc3545;
+            color: #fff;
+        }
+    </style>
+<body>
+    <h1>Booking Applications</h1>
+    <ul>
+        {% for application in applications %}
+            <li>
+                <strong>Name:</strong> {{ application.name }} {{ application.surname }}<br>
+                <strong>Room:</strong> {{ application.room.number }}<br>
+                <strong>Check-in Date:</strong> {{ application.check_in_date }}<br>
+                <strong>Check-out Date:</strong> {{ application.check_out_date }}<br>
+                <strong>Total Price:</strong> ${{ application.final_price }}<br>
+                <a href="{% url 'approve_booking' application_id=application.id %}">Approve</a>
+                <a href="{% url 'reject_booking' application_id=application.id %}">Reject</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

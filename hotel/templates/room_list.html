@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room List</title>
+</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+<body>
+    <h1>List of Rooms</h1>
+    <ul>
+        {% for room in rooms %}
+            <li>
+                <strong>Category:</strong> {{ room.get_category_display }}<br>
+                <strong>Number:</strong> {{ room.number }}<br>
+                <strong>Description:</strong> {{ room.description }}<br>
+                <strong>Cost per Day:</strong> ${{ room.cost_per_day }}<br>
+                <a href="{% url 'room_detail' room_id=room.id %}">View Details</a><br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
